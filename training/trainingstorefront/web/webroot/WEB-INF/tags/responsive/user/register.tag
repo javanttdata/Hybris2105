@@ -20,7 +20,7 @@
 	<spring:theme code="register.description" />
 </p>
 
-<form:form method="post" modelAttribute="registerForm" action="${action}">
+<form:form method="post" modelAttribute="trainingRegisterForm" action="${action}">
 	<formElement:formSelectBoxDefaultEnabled idKey="register.title"
 		labelKey="register.title" selectCSSClass="form-control"
 		path="titleCode" mandatory="true" skipBlank="false"
@@ -34,6 +34,17 @@
 	<formElement:formInputBox idKey="register.email"
 		labelKey="register.email" path="email" inputCSS="form-control"
 		mandatory="true" />
+
+	<formElement:formInputBox idKey="register.cpf"
+   		labelKey="register.cpf" path="cpf" inputCSS="form-control"
+   		mandatory="true" />
+	<formElement:formInputBox idKey="register.rg"
+   		labelKey="register.rg" path="rg" inputCSS="form-control"
+   		mandatory="true" />
+ 	<formElement:formInputBox idKey="register.birthDate"
+    	labelKey="register.birthDate" path="birthDate" inputCSS="form-control"
+    	mandatory="true" />
+
 	<formElement:formPasswordBox idKey="password" labelKey="register.pwd"
 		path="pwd" inputCSS="form-control password-strength" mandatory="true" />
 	<formElement:formPasswordBox idKey="register.checkPwd"

@@ -2,7 +2,7 @@
 <!--
  Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
 -->
-<beans xmlns="http://www.springframework.org/schema/beans"
+<bean xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
@@ -182,4 +182,12 @@
 	</bean>
 
 	<bean id="genderData" class="de.hybris.training.facades.product.data.GenderData" scope="prototype"/>
+
+	<!-- FACADES -->
+	<alias name="defaultTrainingCustomerFacade" alias="trainingCustomerFacade"/>
+	<bean id="defaultTrainingCustomerFacade" parent="defaultCustomerFacade"
+		class="de.hybris.training.facades.customer.impl.DefaultTrainingCustomerFacade"/>
+
+
+	</bean>
 </beans>
