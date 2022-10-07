@@ -13,6 +13,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 
 import javax.annotation.Resource;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -23,7 +24,10 @@ import java.util.regex.Pattern;
  */
 @Component("trainingRegistrationValidator")
 public class TrainingRegistrationValidator extends RegistrationValidator {
-	@Resource(name = "configurationService")
+	private static final String CPF_REGEX = "cpf.regex" ;
+
+	public static final String EMAIL_REGEX = "email.regex";
+		@Resource(name = "configurationService")
 	private ConfigurationService configurationService;
 
 	@Override
@@ -62,12 +66,13 @@ public class TrainingRegistrationValidator extends RegistrationValidator {
 		comparePasswords(errors, pwd, checkPwd);
 		validateCpf(errors, cpf);
 		validateRg(errors, rg);
+		validateBirthDate(errors, birthDate);
 		validateTermsAndConditions(errors, termsCheck);
 	}
 
 	protected void validateRg(final Errors errors, final String rg)
 	{
-		if (StringUtils.isEmpty(rg))
+		if (StringUtils.isBlank(rg))
 		{
 			errors.rejectValue("rg", "register.rg.invalid");
 		}
@@ -76,25 +81,30 @@ public class TrainingRegistrationValidator extends RegistrationValidator {
 
 	protected void validateCpf(final Errors errors, final String cpf)
 	{
-		if (StringUtils.isEmpty(cpf))
-		{
+		if (StringUtils.isBlank(cpf) || !validatePatternCpf(cpf)){
 			errors.rejectValue("cpf", "register.cpf.invalid");
 		}
-
-		else if (!validatePatternCpf(cpf))
-		{
-			errors.rejectValue("cpf", "register.cpf.invalid");
-		}
-
 	}
 
-	protected boolean validatePatternCpf(final String cpf)
-	{
-		final Matcher matcher = Pattern.compile("^[0-9]{3}[\\.]?[0-9]{3}[\\.]?[0-9]{3}[\\.-]?[0-9]{2}$")
-				.matcher(cpf);
+	private boolean validatePatternCpf (final String cpf){
+		final String regex = this.configurationService.getConfiguration().getString(CPF_REGEX);
+
+		final Matcher matcher = Pattern.compile(regex).matcher(cpf);
 		return matcher.matches();
 	}
 
+	protected void validateBirthDate(final Errors errors, final Date birthDate){
+		if (birthDate == null){
+			errors.rejectValue("birthDate", "register.birthDate.invalid");
+		}else{
+			final Calendar c = Calendar.getInstance();
+			c.add(Calendar.YEAR, -18);
+
+			if (c.getTime().before(birthDate)){
+				errors.rejectValue("birthDate", "register.birthDate.invalid");
+			}
+		}
+	}
 
 	protected void comparePasswords(final Errors errors, final String pwd, final String checkPwd)
 	{
