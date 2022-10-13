@@ -25,6 +25,9 @@
                     <formElement:formSelectBoxDefaultEnabled idKey="profile.title" labelKey="profile.title" path="titleCode" mandatory="true" skipBlank="false" skipBlankMessageKey="form.select.none" items="${titleData}" selectCSSClass="form-control"/>
                     <formElement:formInputBox idKey="profile.firstName" labelKey="profile.firstName" path="firstName" inputCSS="text" mandatory="true"/>
                     <formElement:formInputBox idKey="profile.lastName" labelKey="profile.lastName" path="lastName" inputCSS="text" mandatory="true"/>
+                    <formElement:formInputBox idKey="profile.cpf" labelKey="profile.cpf" path="cpf" inputCSS="text" mandatory="true"/>
+                    <formElement:formInputBox idKey="profile.rg" labelKey="profile.rg" path="rg" inputCSS="text" mandatory="true"/>
+                    <formElement:formInputBox idKey="profile.birthDate" labelKey="profile.birthDate" path="birthDate" inputCSS="text" mandatory="true"/>
 
                     <div class="row">
                         <div class="col-sm-6 col-sm-push-6">

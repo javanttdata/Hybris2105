@@ -65,6 +65,7 @@ import javax.annotation.Resource;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 
+import de.hybris.training.storefront.forms.TrainingUpdateProfileForm;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
@@ -483,11 +484,14 @@ public class AccountPageController extends AbstractSearchPageController
 		model.addAttribute(TITLE_DATA_ATTR, userFacade.getTitles());
 
 		final CustomerData customerData = customerFacade.getCurrentCustomer();
-		final UpdateProfileForm updateProfileForm = new UpdateProfileForm();
+		final TrainingUpdateProfileForm updateProfileForm = new TrainingUpdateProfileForm();
 
 		updateProfileForm.setTitleCode(customerData.getTitleCode());
 		updateProfileForm.setFirstName(customerData.getFirstName());
 		updateProfileForm.setLastName(customerData.getLastName());
+		updateProfileForm.setCpf(customerData.getCpf());
+		updateProfileForm.setRg(customerData.getRg());
+		updateProfileForm.setBirthDate(customerData.getBirthDate());
 
 		model.addAttribute("updateProfileForm", updateProfileForm);
 

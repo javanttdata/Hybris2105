@@ -18,4 +18,11 @@
 		<property name="rg" type="java.lang.String"/>
 		<property name="birthDate" type="java.util.Date"/>
 	</bean>
+
+	<bean class="de.hybris.platform.commercefacades.user.data.CustomerData">
+		<property name="cpf" type="java.lang.String"/>
+		<property name="rg" type="java.lang.String"/>
+		<property name="birthDate" type="java.util.Date"/>
+	</bean>
+
 </beans>

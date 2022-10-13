@@ -188,4 +188,12 @@
 	<bean id="defaultTrainingCustomerFacade" parent="defaultCustomerFacade"
 		class="de.hybris.training.facades.customer.impl.DefaultTrainingCustomerFacade"/>
 
+	<alias name="defaultTrainingCustomerPopulator" alias="trainingCustomerPopulator"/>
+	<bean id="defaultTrainingCustomerPopulator" class="de.hybris.training.facades.populators.TrainingCustomerPopulator"/>
+
+	<bean parent="modifyPopulatorList">
+		<property name="list" ref="customerConverter" />
+		<property name="add" ref="trainingCustomerPopulator" />
+	</bean>
+
 </beans>
