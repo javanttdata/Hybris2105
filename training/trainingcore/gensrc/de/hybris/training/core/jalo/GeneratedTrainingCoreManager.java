@@ -1,19 +1,21 @@
 /*
  * ----------------------------------------------------------------
  * --- WARNING: THIS FILE IS GENERATED AND WILL BE OVERWRITTEN! ---
- * --- Generated at 13 de out de 2022 14:08:47                  ---
+ * --- Generated at 31 de out de 2022 09:07:50                  ---
  * ----------------------------------------------------------------
  *  
  * Copyright (c) 2022 SAP SE or an SAP affiliate company. All rights reserved.
  */
 package de.hybris.training.core.jalo;
 
+import de.hybris.platform.jalo.GenericItem;
 import de.hybris.platform.jalo.Item;
 import de.hybris.platform.jalo.Item.AttributeMode;
 import de.hybris.platform.jalo.JaloBusinessException;
 import de.hybris.platform.jalo.JaloSystemException;
 import de.hybris.platform.jalo.SessionContext;
 import de.hybris.platform.jalo.extension.Extension;
+import de.hybris.platform.jalo.product.Product;
 import de.hybris.platform.jalo.type.ComposedType;
 import de.hybris.platform.jalo.type.JaloGenericCreationException;
 import de.hybris.platform.jalo.user.Customer;
@@ -23,6 +25,7 @@ import de.hybris.training.core.jalo.ApparelProduct;
 import de.hybris.training.core.jalo.ApparelSizeVariantProduct;
 import de.hybris.training.core.jalo.ApparelStyleVariantProduct;
 import de.hybris.training.core.jalo.ElectronicsColorVariantProduct;
+import de.hybris.training.core.jalo.WeatherInfoComponent;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
@@ -43,6 +46,9 @@ public abstract class GeneratedTrainingCoreManager extends Extension
 		tmp.put("rg", AttributeMode.INITIAL);
 		tmp.put("birthDate", AttributeMode.INITIAL);
 		ttmp.put("de.hybris.platform.jalo.user.Customer", Collections.unmodifiableMap(tmp));
+		tmp = new HashMap<String, AttributeMode>();
+		tmp.put("madein", AttributeMode.INITIAL);
+		ttmp.put("de.hybris.platform.jalo.product.Product", Collections.unmodifiableMap(tmp));
 		DEFAULT_INITIAL_ATTRIBUTES = ttmp;
 	}
 	@Override
@@ -233,10 +239,72 @@ public abstract class GeneratedTrainingCoreManager extends Extension
 		return createElectronicsColorVariantProduct( getSession().getSessionContext(), attributeValues );
 	}
 	
+	public WeatherInfoComponent createWeatherInfoComponent(final SessionContext ctx, final Map attributeValues)
+	{
+		try
+		{
+			ComposedType type = getTenant().getJaloConnection().getTypeManager().getComposedType( TrainingCoreConstants.TC.WEATHERINFOCOMPONENT );
+			return (WeatherInfoComponent)type.newInstance( ctx, attributeValues );
+		}
+		catch( JaloGenericCreationException e)
+		{
+			final Throwable cause = e.getCause();
+			throw (cause instanceof RuntimeException ?
+			(RuntimeException)cause
+			:
+			new JaloSystemException( cause, cause.getMessage(), e.getErrorCode() ) );
+		}
+		catch( JaloBusinessException e )
+		{
+			throw new JaloSystemException( e ,"error creating WeatherInfoComponent : "+e.getMessage(), 0 );
+		}
+	}
+	
+	public WeatherInfoComponent createWeatherInfoComponent(final Map attributeValues)
+	{
+		return createWeatherInfoComponent( getSession().getSessionContext(), attributeValues );
+	}
+	
 	@Override
 	public String getName()
 	{
 		return TrainingCoreConstants.EXTENSIONNAME;
+	}
+	
+	/**
+	 * <i>Generated method</i> - Getter of the <code>Product.madein</code> attribute.
+	 * @return the madein - Local de Fabricacao
+	 */
+	public String getMadein(final SessionContext ctx, final Product item)
+	{
+		return (String)item.getProperty( ctx, TrainingCoreConstants.Attributes.Product.MADEIN);
+	}
+	
+	/**
+	 * <i>Generated method</i> - Getter of the <code>Product.madein</code> attribute.
+	 * @return the madein - Local de Fabricacao
+	 */
+	public String getMadein(final Product item)
+	{
+		return getMadein( getSession().getSessionContext(), item );
+	}
+	
+	/**
+	 * <i>Generated method</i> - Setter of the <code>Product.madein</code> attribute. 
+	 * @param value the madein - Local de Fabricacao
+	 */
+	public void setMadein(final SessionContext ctx, final Product item, final String value)
+	{
+		item.setProperty(ctx, TrainingCoreConstants.Attributes.Product.MADEIN,value);
+	}
+	
+	/**
+	 * <i>Generated method</i> - Setter of the <code>Product.madein</code> attribute. 
+	 * @param value the madein - Local de Fabricacao
+	 */
+	public void setMadein(final Product item, final String value)
+	{
+		setMadein( getSession().getSessionContext(), item, value );
 	}
 	
 	/**

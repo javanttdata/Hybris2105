@@ -1,0 +1,11 @@
+
+$version=Staged
+
+$contentCatalog=electronicsContentCatalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]), CatalogVersion.version[default=$version])[default=$contentCatalog:$version]
+
+$lang=en
+
+INSERT_UPDATE WeatherInfoComponent; $contentCV[unique=true]; uid[unique=true]              ; name                               ; &componentRef                  ;
+                                  ;                        ; electronicsWeatherInfoComponent; electronics Weather Info Component; electronicsWeatherInfoComponent;
+

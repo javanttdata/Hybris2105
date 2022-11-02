@@ -28,7 +28,7 @@ public class TrainingRegistrationValidator extends RegistrationValidator {
 
 	public static final String EMAIL_REGEX = "email.regex";
 		@Resource(name = "configurationService")
-	private ConfigurationService configurationService;
+		private ConfigurationService configurationService;
 
 	@Override
 	public boolean supports(final Class<?> aClass)

@@ -52,6 +52,7 @@ import de.hybris.platform.servicelayer.exceptions.AmbiguousIdentifierException;
 import de.hybris.platform.servicelayer.exceptions.ModelNotFoundException;
 import de.hybris.platform.servicelayer.exceptions.UnknownIdentifierException;
 import de.hybris.platform.util.Config;
+import de.hybris.training.facades.customer.TrainingCustomerFacade;
 import de.hybris.training.storefront.controllers.ControllerConstants;
 
 import java.util.Arrays;
@@ -66,6 +67,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 
 import de.hybris.training.storefront.forms.TrainingUpdateProfileForm;
+import de.hybris.training.storefront.validator.TrainingProfileValidator;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
@@ -162,6 +164,9 @@ public class AccountPageController extends AbstractSearchPageController
 	@Resource(name = "customerFacade")
 	private CustomerFacade customerFacade;
 
+	@Resource(name = "trainingCustomerFacade")
+	private TrainingCustomerFacade trainingCustomerFacade;
+
 	@Resource(name = "accountBreadcrumbBuilder")
 	private ResourceBreadcrumbBuilder accountBreadcrumbBuilder;
 
@@ -173,6 +178,9 @@ public class AccountPageController extends AbstractSearchPageController
 
 	@Resource(name = "profileValidator")
 	private ProfileValidator profileValidator;
+
+	@Resource(name = "trainingProfileValidator")
+	private TrainingProfileValidator trainingProfileValidator;
 
 	@Resource(name = "emailValidator")
 	private EmailValidator emailValidator;
@@ -209,6 +217,8 @@ public class AccountPageController extends AbstractSearchPageController
 	{
 		return profileValidator;
 	}
+
+	protected TrainingProfileValidator getTrainingProfileValidator(){return trainingProfileValidator;}
 
 	protected EmailValidator getEmailValidator()
 	{
@@ -506,17 +516,20 @@ public class AccountPageController extends AbstractSearchPageController
 
 	@RequestMapping(value = "/update-profile", method = RequestMethod.POST)
 	@RequireHardLogIn
-	public String updateProfile(final UpdateProfileForm updateProfileForm, final BindingResult bindingResult, final Model model,
+	public String updateProfile(final TrainingUpdateProfileForm updateProfileForm, final BindingResult bindingResult, final Model model,
 			final RedirectAttributes redirectAttributes) throws CMSItemNotFoundException
 	{
-		getProfileValidator().validate(updateProfileForm, bindingResult);
+		getTrainingProfileValidator().validate(updateProfileForm, bindingResult);
 
 		String returnAction = REDIRECT_TO_UPDATE_PROFILE;
-		final CustomerData currentCustomerData = customerFacade.getCurrentCustomer();
+		final CustomerData currentCustomerData = trainingCustomerFacade.getCurrentCustomer();
 		final CustomerData customerData = new CustomerData();
 		customerData.setTitleCode(updateProfileForm.getTitleCode());
 		customerData.setFirstName(updateProfileForm.getFirstName());
 		customerData.setLastName(updateProfileForm.getLastName());
+		customerData.setCpf(updateProfileForm.getCpf());
+		customerData.setRg(updateProfileForm.getRg());
+		customerData.setBirthDate(updateProfileForm.getBirthDate());
 		customerData.setUid(currentCustomerData.getUid());
 		customerData.setDisplayUid(currentCustomerData.getDisplayUid());
 
@@ -534,7 +547,7 @@ public class AccountPageController extends AbstractSearchPageController
 		{
 			try
 			{
-				customerFacade.updateProfile(customerData);
+				trainingCustomerFacade.updateProfile(customerData);
 				GlobalMessages.addFlashMessage(redirectAttributes, GlobalMessages.CONF_MESSAGES_HOLDER,
 						"text.account.profile.confirmationUpdated", null);
 

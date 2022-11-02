@@ -15,7 +15,6 @@ public class TrainingUpdateProfileForm extends UpdateProfileForm {
 	private String rg;
 
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
-
 	private Date birthDate;
 
 	public String getCpf() {

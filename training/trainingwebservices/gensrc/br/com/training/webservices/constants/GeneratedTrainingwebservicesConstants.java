@@ -1,7 +1,7 @@
 /*
  * ----------------------------------------------------------------
  * --- WARNING: THIS FILE IS GENERATED AND WILL BE OVERWRITTEN! ---
- * --- Generated at 13 de out de 2022 14:08:47                  ---
+ * --- Generated at 31 de out de 2022 09:07:50                  ---
  * ----------------------------------------------------------------
  */
 package br.com.training.webservices.constants;

@@ -186,10 +186,16 @@
 	<!-- FACADES -->
 	<alias name="defaultTrainingCustomerFacade" alias="trainingCustomerFacade"/>
 	<bean id="defaultTrainingCustomerFacade" parent="defaultCustomerFacade"
-		class="de.hybris.training.facades.customer.impl.DefaultTrainingCustomerFacade"/>
+		class="de.hybris.training.facades.customer.impl.DefaultTrainingCustomerFacade">
+		<property name="trainingCustomerAccountService" ref="trainingCustomerAccountService"/>
+	</bean>
+
+
 
 	<alias name="defaultTrainingCustomerPopulator" alias="trainingCustomerPopulator"/>
 	<bean id="defaultTrainingCustomerPopulator" class="de.hybris.training.facades.populators.TrainingCustomerPopulator"/>
+
+
 
 	<bean parent="modifyPopulatorList">
 		<property name="list" ref="customerConverter" />

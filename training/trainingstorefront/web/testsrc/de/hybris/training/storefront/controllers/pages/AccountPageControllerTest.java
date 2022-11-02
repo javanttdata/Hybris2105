@@ -61,6 +61,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 
+import de.hybris.training.storefront.forms.TrainingUpdateProfileForm;
 import org.apache.commons.collections.CollectionUtils;
 import org.hamcrest.CoreMatchers;
 import org.junit.Before;
@@ -158,7 +159,7 @@ public class AccountPageControllerTest
 	@Mock
 	private UpdateEmailForm emailForm;
 	@Mock
-	private UpdateProfileForm profileForm;
+	private TrainingUpdateProfileForm profileForm;
 	@Mock
 	private UpdatePasswordForm passwordForm;
 	@Mock

@@ -538,4 +538,13 @@
 		<property name="itemCleanupHooks" ref="csTicketRetentionHooks"/>
 		<property name="ticketBusinessService" ref="ticketBusinessService"/>
 	</bean>
+
+	<!-- -->
+	<alias name="defaultTrainingCustomerAccountService" alias="trainingCustomerAccountService"/>
+	<bean id="defaultTrainingCustomerAccountService" parent="defaultCustomerAccountService"
+		  class="de.hybris.training.core.customer.impl.DefaultTrainingCustomerAccountService" />
+
+	<alias name="defaultWeatherInfoService" alias="weatherInfoService"/>
+	<bean id="defaultWeatherInfoService" class="de.hybris.training.core.hgbrasil.impl.DefaultWeatherInfoService"/>
+
 </beans>

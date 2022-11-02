@@ -1,7 +1,7 @@
 /*
  * ----------------------------------------------------------------
  * --- WARNING: THIS FILE IS GENERATED AND WILL BE OVERWRITTEN! ---
- * --- Generated at 13 de out de 2022 14:08:47                  ---
+ * --- Generated at 31 de out de 2022 09:07:50                  ---
  * ----------------------------------------------------------------
  *  
  * Copyright (c) 2022 SAP SE or an SAP affiliate company. All rights reserved.
@@ -23,6 +23,7 @@ public class GeneratedTrainingCoreConstants
 		public static final String APPARELSTYLEVARIANTPRODUCT = "ApparelStyleVariantProduct".intern();
 		public static final String ELECTRONICSCOLORVARIANTPRODUCT = "ElectronicsColorVariantProduct".intern();
 		public static final String SWATCHCOLORENUM = "SwatchColorEnum".intern();
+		public static final String WEATHERINFOCOMPONENT = "WeatherInfoComponent".intern();
 	}
 	public static class Attributes
 	{
@@ -31,6 +32,10 @@ public class GeneratedTrainingCoreConstants
 			public static final String BIRTHDATE = "birthDate".intern();
 			public static final String CPF = "cpf".intern();
 			public static final String RG = "rg".intern();
+		}
+		public static class Product
+		{
+			public static final String MADEIN = "madein".intern();
 		}
 	}
 	public static class Enumerations
